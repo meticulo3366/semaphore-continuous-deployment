@@ -28,4 +28,14 @@ Please make sure that you’ve read these articles before you start writing:
 - [How to Format Semaphore Tutorials for
   Publishing](https://semaphoreci.com/community/tutorials/how-to-format-semaphore-tutorials-for-publishing)
 
+### Windows
+PATH=$PATH:/mnt/c/Program\ Files/Docker/Docker/resources/bin/
+alias docker="docker.exe"
+
+
+# ULTIMATE TRICK (in powershell)
+
+docker build -t meticulo3366/helloworld
+bash -c 'ansible-playbook deploy.yml'
+
 ![Let's do this](https://d2l3jyjp24noqc.cloudfront.net/uploads/image/img/53/lets.jpg)

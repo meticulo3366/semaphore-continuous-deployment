@@ -23,13 +23,16 @@
       register: prereqs
 
     - name: Generate artifact hash
-      command: "./script/release-tag"
+      # command: "./script/release-tag"
+      #command: echo latest
+      shell: echo ./script/random
       changed_when: False
       register: artifact_hash
 
-    - name: Push Image to ECR
-      command: "make push UPSTREAM={{ prereqs.stack_outputs.Repository }}:{{ artifact_hash.stdout }}"
-      changed_when: False
+    ############### UNCOMMENT ######
+    # - name: Push Image to ECR
+    #   command: "make push UPSTREAM={{ prereqs.stack_outputs.Repository }}:{{ artifact_hash.stdout }}"
+    #   changed_when: False
 
     - name: Create scratch dir for release artifact
       command: "mktemp -d"
@@ -41,7 +44,9 @@
         src: files/Dockerrun.aws.json
         dest: "{{ tmp_dir.stdout }}/Dockerrun.aws.json"
       vars:
-        image: "{{ prereqs.stack_outputs.Repository }}:{{ artifact_hash.stdout }}"
+        image: meticulo3366/semaphore-continuous-deployment:latest
+        # image: "{{ prereqs.stack_outputs.Repository }}:{{ artifact_hash.stdout }}"
+        # image: "{{ prereqs.stack_outputs.Repository }}:latest"
 
     - name: Create release zip file
       command: "zip -r {{ tmp_dir.stdout }}/release.zip ."

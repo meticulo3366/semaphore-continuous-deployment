@@ -1,7 +1,7 @@
 {
   "AWSEBDockerrunVersion": "1",
   "Image": {
-    "Name": "{{ image }}",
+    "Name": "meticulo3366/semaphore-continuous-deployment:latest",
     "Update": "true"
   },
   "Ports": [{

@@ -1,6 +1,9 @@
-RUBY_IMAGE:=$(shell head -n 1 Dockerfile | cut -d ' ' -f 2)
-IMAGE:=cd-example/hello_world
+#RUBY_IMAGE:=$(shell head -n 1 Dockerfile | cut -d ' ' -f 2)
+IMAGE:=semaphore-continuous-deployment:latest
 DOCKER:=tmp/docker
+
+#PATH=$PATH:/mnt/c/Program\ Files/Docker/Docker/resources/bin/
+#alias docker="docker.exe"
 
 .PHONY: check
 check:
@@ -21,10 +24,8 @@ build: $(DOCKER)
 
 .PHONY: test-cloudformation
 test-cloudformation:
-	aws --region eu-west-1 cloudformation \
-		validate-template --template-body file://cloudformation/prereqs.json
-	aws --region eu-west-1 cloudformation \
-		validate-template --template-body file://cloudformation/app.json
+	aws --region eu-west-1 cloudformation validate-template --template-body file://cloudformation/prereqs.json
+	aws --region eu-west-1 cloudformation validate-template --template-body file://cloudformation/app.json
 
 .PHONY: test-image
 test-image: $(DOCKER)
