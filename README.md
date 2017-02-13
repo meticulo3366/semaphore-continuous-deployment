@@ -28,14 +28,23 @@ Please make sure that you’ve read these articles before you start writing:
 - [How to Format Semaphore Tutorials for
   Publishing](https://semaphoreci.com/community/tutorials/how-to-format-semaphore-tutorials-for-publishing)
 
-### Windows
-PATH=$PATH:/mnt/c/Program\ Files/Docker/Docker/resources/bin/
-alias docker="docker.exe"
+# Using Ansible and Docker on Windows
 
+Install docker and windows bash, google this!
 
-# ULTIMATE TRICK (in powershell)
+```
+sudo apt-get install software-properties-common 
+sudo add-apt-repository ppa:webupd8team/java
+sudo apt-add-repository ppa:ansible/ansible
+sudo apt-get update
+sudo apt-get install oracle-java8-installer gradle ansible python-pip zip
+sudo pip install awscli boto
+```
 
-docker build -t meticulo3366/helloworld
+# Pipeline for Windows Development
+
+docker build -t meticulo3366/semaphore-continuous-deployment:latest .
+docker push meticulo3366/semaphore-continuous-deployment:latest
 bash -c 'ansible-playbook deploy.yml'
 
 ![Let's do this](https://d2l3jyjp24noqc.cloudfront.net/uploads/image/img/53/lets.jpg)

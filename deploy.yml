@@ -25,7 +25,7 @@
     - name: Generate artifact hash
       # command: "./script/release-tag"
       #command: echo latest
-      shell: echo ./script/random
+      shell: cat version
       changed_when: False
       register: artifact_hash
 
