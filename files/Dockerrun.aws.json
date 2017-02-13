@@ -1,10 +1,46 @@
 {
-  "AWSEBDockerrunVersion": "1",
-  "Image": {
-    "Name": "meticulo3366/semaphore-continuous-deployment:latest",
-    "Update": "true"
-  },
-  "Ports": [{
-    "ContainerPort": "80"
-  }]
+    "AWSEBDockerrunVersion": 2,
+    "containerDefinitions": [
+        {
+            "essential": true,
+            "memory": 256,
+            "image": "meticulo3366/angular-client",
+            "name": "angular",
+            "portMappings": [
+                {
+                    "containerPort": 4200,
+                    "hostPort": 80
+                }
+            ]
+        },
+        {
+            "essential": true,
+            "memory": 256,
+            "image": "mongo",
+            "name": "database",
+            "portMappings": [
+                {
+                    "containerPort": 27017,
+                    "hostPort": 27017
+                }
+            ]
+        },
+        {
+            "essential": true,
+            "memory": 256,
+            "image": "meticulo3366/express-server",
+            "links": [
+                "database"
+            ],
+            "name": "express",
+            "portMappings": [
+                {
+                    "containerPort": 3000,
+                    "hostPort": 3000
+                }
+            ]
+        }
+    ],
+    "family": "",
+    "volumes": []
 }
